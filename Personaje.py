@@ -7,4 +7,3 @@ class Personaje:
         self.naves=naves
         self.vehiculos=vehiculos
         
-    
