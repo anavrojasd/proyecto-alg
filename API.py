@@ -6,3 +6,4 @@ def cargar_API(link):
 
 cargar_API("https://www.swapi.tech/api/")
 
+
