@@ -51,7 +51,6 @@ def cargar_planetas():
     return lista_planetas
 
 
-
 def cargar_personaje():
     lista_personajes = []
     personajesAPI = cargar_API("https://www.swapi.tech/api/people?page=1&limit=95")
@@ -60,10 +59,18 @@ def cargar_personaje():
         url_personaje = cargar_API(results["url"])
         url = url_personaje["result"]['properties']["url"]
         nombre_personaje = url_personaje["result"]['properties']["name"]
-        planeta_origen = url_personaje["result"]['properties']["homeworld"]
+
+        url_planeta = url_personaje["result"]['properties']["homeworld"]
+        datos_planeta = cargar_API(url_planeta)
+        planeta_origen = datos_planeta["result"]['properties']["name"]
+
         genero = url_personaje["result"]['properties']["gender"]
 
-        personaje=Personaje(nombre_personaje, planeta_origen,genero, url)
+        url_especie = url_personaje["result"]['properties']["species"]
+        datos_especie = cargar_API(url_especie) 
+        especie_personaje = datos_especie["result"]['properties']["name"]      
+
+        personaje=Personaje(nombre_personaje, planeta_origen, genero, especie_personaje, url)
         lista_personajes.append(personaje)
     return lista_personajes
 

@@ -46,11 +46,43 @@ Ingrese una opción del menú:
                 resultados = buscar_personaje(personajes, cadena_busqueda)
                 if resultados:
                     print("Personajes encontrados:")
-                    for personaje in resultados:
-                        mostrar_personaje(personaje) 
                 else:
                     print("No se encontraron personajes con ese nombre.")
+                print()
+                print('Seleccione un personaje: ')    
+                eleccion=int(input('-->'))
+                personaje=self.personajes[eleccion-1]   
+                personaje.mostrar_personaje()
+
+            elif menu == '5':
+                None
+
+            elif menu == '6':
+                None
+
+            elif menu == '7':
+                None        
+
+            elif menu == '8':
+                None
+
+            elif menu == '9':
+                None
+
+            elif menu == '10':
+                None
+
+            elif menu == '11':
+                None
+
+            elif menu == '12':
+                None                
+
             elif menu == '13':
                 break
+
+
+
+
 app = App()
 app.start()
