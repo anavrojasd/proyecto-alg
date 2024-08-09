@@ -1,7 +1,7 @@
 import requests as rq
 from Pelicula import Pelicula
 from Planeta import Planeta
-
+from Personaje import Personaje
 def cargar_API(link):
     info=rq.get(link).json()
     return info
@@ -24,13 +24,12 @@ def cargar_peliculas():
         especies= results['properties']['species']
         pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento, opening_crawl, director, productores, planetas, aeronaves, vehiculos, especies)
         lista_peliculas.append(pelicula)
-    print(lista_peliculas)
     return lista_peliculas
-cargar_peliculas()
+
 
 def cargar_planetas():
     lista_planetas= []
-    planetasAPI= cargar_API("https://www.swapi.tech/api/planets")
+    planetasAPI= cargar_API("https://www.swapi.tech/api/planets?page=1&limit=75")
 
     for results in planetasAPI["results"]:
         url_planeta=cargar_API(results["url"])
@@ -42,7 +41,21 @@ def cargar_planetas():
 
         planeta= Planeta(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima)
         lista_planetas.append(planeta)
-    print(lista_planetas)
     return lista_planetas
 
-cargar_planetas()
+
+def cargar_personaje():
+    lista_personajes=[]
+    personajesAPI= cargar_API("https://www.swapi.tech/api/people?page=1&limit=95")
+
+    for results in personajesAPI["results"]:
+        url_personaje=cargar_API(results["url"])
+        nombre_personaje=url_personaje["result"]['properties']["name"]
+        planeta_origen=url_personaje["result"]['properties']["homeworld"]
+        genero=url_personaje["result"]['properties']["gender"]
+
+        personaje=Personaje(nombre_personaje, planeta_origen,genero)
+        lista_personajes.append(personaje)
+    return lista_personajes
+
+        
