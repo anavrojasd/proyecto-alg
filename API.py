@@ -9,7 +9,6 @@ def cargar_API(link):
 def cargar_peliculas():
     lista_peliculas = []
     peliculasAPI = cargar_API("https://www.swapi.tech/api/films")
-    
     for results in peliculasAPI['result']:
         titulo = results['properties']['title']
         personajes = results['properties']['characters']
@@ -24,9 +23,7 @@ def cargar_peliculas():
         vehiculos= results['properties']['vehicles']
         especies= results['properties']['species']
 
-        pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento,
-                            opening_crawl, director, productores, url, planetas, aeronaves, vehiculos, especies)
+        pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento, opening_crawl, director, productores, url, planetas, aeronaves, vehiculos, especies)
         lista_peliculas.append(pelicula)
-        
-    #return lista_peliculas
+    return lista_peliculas
 cargar_peliculas()
