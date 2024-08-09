@@ -22,4 +22,11 @@ class Pelicula:
                 Opening crawl: {self.opening_crawl}
                 Nombre del Director: {self.director}
                         ''')
+<<<<<<< Updated upstream
         
+=======
+        if mostrar_personajes:
+            print("Personajes:")
+            for personaje in self.personajes:
+                print(f"- {personaje[1]}")
+>>>>>>> Stashed changes

@@ -23,12 +23,11 @@ def cargar_peliculas():
         aeronaves= results['properties']['starships']
         vehiculos= results['properties']['vehicles']
         especies= results['properties']['species']
-
         pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento,
                             opening_crawl, director, productores, url_pelicula, planetas, aeronaves, vehiculos, especies)
         lista_peliculas.append(pelicula)
     return lista_peliculas
-
+cargar_peliculas()
 def cargar_planetas():
     lista_planetas= []
     planetasAPI= cargar_API("https://www.swapi.tech/api/planets")
