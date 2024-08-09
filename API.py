@@ -3,6 +3,7 @@ from Pelicula import Pelicula
 from Planeta import Planeta
 from Personaje import Personaje
 from Especie import Especie
+from Nave import Nave
 
 def cargar_API(link):
     info=rq.get(link).json()
@@ -62,7 +63,7 @@ def cargar_personaje():
 
 def cargar_especie():
     lista_especies=[]
-    especiesAPI= cargar_API("https://www.swapi.tech/api/species?page=2&limit=40")
+    especiesAPI= cargar_API("https://www.swapi.tech/api/species?page=1&limit=40")
 
     for results in especiesAPI["results"]:
         url_especie=cargar_API(results["url"])
@@ -75,3 +76,20 @@ def cargar_especie():
         especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie)
         lista_especies.append(especies)
     return lista_especies
+
+def cargar_nave():
+    lista_naves=[]
+    navesAPI=cargar_API("https://www.swapi.tech/api/starships?page=1&limit=40")
+    for results in navesAPI["results"]:
+        url_nave=cargar_API(results["url"])
+        nombre_nave=url_nave["result"]['properties']["name"]
+        piloto=url_nave["result"]['properties']["pilots"]
+
+        nave=Nave(nombre_nave,piloto)
+        lista_naves.append(nave)
+    return lista_naves
+
+
+
+    
+
