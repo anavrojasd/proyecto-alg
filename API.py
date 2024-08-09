@@ -2,6 +2,8 @@ import requests as rq
 from Pelicula import Pelicula
 from Planeta import Planeta
 from Personaje import Personaje
+from Especie import Especie
+
 def cargar_API(link):
     info=rq.get(link).json()
     return info
@@ -59,4 +61,18 @@ def cargar_personaje():
         lista_personajes.append(personaje)
     return lista_personajes
 
-        
+def cargar_especie():
+    lista_especies=[]
+    especiesAPI= cargar_API("https://www.swapi.tech/api/species?page=2&limit=40")
+
+    for results in especiesAPI["results"]:
+        url_especie=cargar_API(results["url"])
+        nombre_especie=url_especie["result"]['properties']["name"]
+        altura_especie=url_especie["result"]['properties']["average_height"]
+        clasificacion_especie=url_especie["result"]['properties']["classification"]
+        nombre_planeta_origen_especie=url_especie["result"]['properties']["homeworld"]
+        lengua_materna_especie=url_especie["result"]['properties']["language"]
+
+        especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie)
+        lista_especies.append(especies)
+    return lista_especies
