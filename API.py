@@ -36,14 +36,14 @@ def cargar_planetas():
     for results in planetasAPI["results"]:
         url_planeta=cargar_API(results["url"])
         nombre_planeta = url_planeta['result']['properties']['name']
+        periodo_orbita=url_planeta['result']['properties']['orbital_period']
+        periodo_rotacion=url_planeta['result']['properties']['rotation_period']
+        cantidad_habitantes=url_planeta['result']['properties']['population']
+        tipo_clima=url_planeta['result']['properties']['name']
 
-        #results["results"]["url"]
-    #return lista_planetas
-        print(nombre_planeta)
+        planeta= Pelicula(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima)
+        lista_planetas.append(planeta)
+        print(lista_planetas)
+    return lista_planetas
+
 cargar_planetas()
-
-        
-
-
-    #return lista_peliculas
-cargar_peliculas()
