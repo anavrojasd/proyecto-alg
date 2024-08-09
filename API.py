@@ -32,21 +32,24 @@ def cargar_peliculas():
 
 
 def cargar_planetas():
-    lista_planetas= []
-    planetasAPI= cargar_API("https://www.swapi.tech/api/planets?page=1&limit=75")
+    lista_planetas = []
+    planetasAPI = cargar_API("https://www.swapi.tech/api/planets?page=1&limit=75")
 
     for results in planetasAPI["results"]:
-        url_planeta=cargar_API(results["url"])
+        url_planeta = cargar_API(results["url"])
         url = url_planeta['result']['properties']['url']
         nombre_planeta = url_planeta['result']['properties']['name']
-        periodo_orbita=url_planeta['result']['properties']['orbital_period']
-        periodo_rotacion=url_planeta['result']['properties']['rotation_period']
-        cantidad_habitantes=url_planeta['result']['properties']['population']
-        tipo_clima=url_planeta['result']['properties']['name']
-
-        planeta= Planeta(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima, url)
+        periodo_orbita = url_planeta['result']['properties']['orbital_period']
+        periodo_rotacion = url_planeta['result']['properties']['rotation_period']
+        cantidad_habitantes = url_planeta['result']['properties']['population']
+        tipo_clima = url_planeta['result']['properties']['climate']
+        personajes = url_planeta['result']['properties'].get('residents', [])
+        
+        planeta = Planeta(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima, personajes, url)
         lista_planetas.append(planeta)
+    
     return lista_planetas
+
 
 
 def cargar_personaje():
@@ -111,7 +114,6 @@ def cargar_vehiculo():
 
         vehiculo=Vehiculo(nombre_vehiculo, piloto)
         lista_vehiculos.append(vehiculo)
-        print(cargar_vehiculo)
     return lista_vehiculos
 
 cargar_vehiculo()

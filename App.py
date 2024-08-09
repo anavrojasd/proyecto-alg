@@ -39,7 +39,7 @@ Ingrese una opción del menú:
                 
             elif menu == '3':
                 for planeta in planetas:
-                    planeta.mostrar_planetas()
+                    planeta.mostrar_planetas(peliculas, personajes)
 
             elif menu == '4': 
                 cadena_busqueda = input("Ingrese parte del nombre del personaje a buscar: ")
@@ -52,7 +52,5 @@ Ingrese una opción del menú:
                     print("No se encontraron personajes con ese nombre.")
             elif menu == '13':
                 break
-
-    
 app = App()
 app.start()

@@ -28,9 +28,9 @@ class Especie:
         Planeta de origen: {self.nombre_planeta_origen_especie}
         Lengua materna: {self.lengua_materna_especie}
         Nombre de los personajes que pertenecen a la especie:''')
-        print(*listaNombres, sep = ", ")
-        print(f'''\tNombre de los episodios en los que aparecen:''')
-        print(*listaPeliculas, sep = ", ")
+        print(*listaNombres, sep = ",")
+        print('''\tNombre de los episodios en los que aparecen:''')
+        print(*listaPeliculas, sep = ",")
     
         
                 
