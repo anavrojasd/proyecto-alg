@@ -4,6 +4,7 @@ from Planeta import Planeta
 from Personaje import Personaje
 from Especie import Especie
 from Nave import Nave
+from Vehiculo import Vehiculo
 
 def cargar_API(link):
     info=rq.get(link).json()
@@ -89,9 +90,9 @@ def cargar_nave():
     for results in navesAPI["results"]:
         url_nave=cargar_API(results["url"])
         nombre_nave=url_nave["result"]['properties']["name"]
-        piloto=url_nave["result"]['properties']["pilots"]
+        piloto_nave=url_nave["result"]['properties']["pilots"]
 
-        nave=Nave(nombre_nave,piloto)
+        nave=Nave(nombre_nave,piloto_nave)
         lista_naves.append(nave)
     return lista_naves
 
@@ -99,3 +100,19 @@ def cargar_nave():
 
     
 
+def cargar_vehiculo():
+    lista_vehiculos=[]
+    vehiculosAPI=cargar_API("https://www.swapi.tech/api/vehicles?page=1&limit=40")
+   
+    for results in vehiculosAPI["results"]:
+        url_vehiculo=cargar_API(results["url"])
+        nombre_vehiculo=url_vehiculo["result"]['properties']["name"]
+        piloto=url_vehiculo["result"]['properties']["pilots"]
+
+        vehiculo=Vehiculo(nombre_vehiculo, piloto)
+        lista_vehiculos.append(vehiculo)
+        print(cargar_vehiculo)
+    return lista_vehiculos
+
+cargar_vehiculo()
+        
