@@ -23,6 +23,7 @@ def cargar_peliculas():
         vehiculos= results['properties']['vehicles']
         especies= results['properties']['species']
         pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento, opening_crawl, director, productores, planetas, aeronaves, vehiculos, especies)
+        pelicula.mostrar_peliculas()
         lista_peliculas.append(pelicula)
     return lista_peliculas
 
