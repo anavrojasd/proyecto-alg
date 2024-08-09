@@ -5,5 +5,13 @@ class Especie:
         self.clasificacion=clasificacion
         self.planeta=planeta
         self.lengua=lengua
+<<<<<<< Updated upstream
 
         
+=======
+        self.personajes=personajes
+        self.peliculas=peliculas
+
+
+            
+>>>>>>> Stashed changes
