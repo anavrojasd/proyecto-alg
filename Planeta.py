@@ -14,6 +14,8 @@ class Planeta:
         Período de rotación: {self.periodo_rotacion}
         Cantidad de habitantes: {self.cantidad_habitantes}
         Tipo de clima: {self.tipo_clima}
-        Lista de episodios en los que aparece: 
+        Lista de episodios en los que aparece el planeta: 
         Lista de los personajes originarios del planeta: 
                         ''')
+
+

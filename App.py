@@ -1,11 +1,15 @@
-from API import cargar_peliculas, cargar_planetas
+from API import cargar_peliculas, cargar_planetas, cargar_especie, cargar_personaje
 from Pelicula import Pelicula
 from Planeta import Planeta
+from Personaje import buscar_personaje
 
 class App:
     def start(self):
         peliculas = cargar_peliculas()
         planetas = cargar_planetas()
+        especies= cargar_especie()
+        personajes = cargar_personaje()
+
         print('Bienvenido')
 
         while True:
@@ -25,14 +29,25 @@ Ingrese una opción del menú:
     12- Cargar misiones                  
     13- Salir                                                                                                                              
 --> ''')
-
             if menu == '1':
                 for pelicula in peliculas:
                     pelicula.mostrar_peliculas()
             elif menu == '2':
                 for planeta in planetas:
                     planeta.mostrar_planetas()
+            elif menu == '3':
+                for especie in especies:
+                    especie.mostrar_especies()
+            elif menu == '4':
+                cadena_busqueda = input("Ingrese parte del nombre del personaje a buscar: ")
+                resultados = buscar_personaje(personajes, cadena_busqueda)
+                if resultados:
+                    print("Personajes encontrados:")
+                    for personaje in resultados:
+                        print(personaje)  
+                else:
+                    print("No se encontraron personajes con ese nombre.")
 
-# Crear una instancia de la aplicación y comenzar
+    
 app = App()
 app.start()
