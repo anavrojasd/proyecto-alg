@@ -1,10 +1,11 @@
 class Planeta:
-    def __init__(self, nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima):
+    def __init__(self, nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima, url):
         self.nombre_planeta = nombre_planeta
         self.periodo_orbita = periodo_orbita
         self.periodo_rotacion = periodo_rotacion
         self.cantidad_habitantes = cantidad_habitantes
         self.tipo_clima = tipo_clima
+        self.url = url
 
     def mostrar_planetas(self):
         print(f'''

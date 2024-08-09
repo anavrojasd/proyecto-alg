@@ -36,28 +36,30 @@ def cargar_planetas():
 
     for results in planetasAPI["results"]:
         url_planeta=cargar_API(results["url"])
+        url = url_planeta['result']['properties']['url']
         nombre_planeta = url_planeta['result']['properties']['name']
         periodo_orbita=url_planeta['result']['properties']['orbital_period']
         periodo_rotacion=url_planeta['result']['properties']['rotation_period']
         cantidad_habitantes=url_planeta['result']['properties']['population']
         tipo_clima=url_planeta['result']['properties']['name']
 
-        planeta= Planeta(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima)
+        planeta= Planeta(nombre_planeta, periodo_orbita, periodo_rotacion, cantidad_habitantes, tipo_clima, url)
         lista_planetas.append(planeta)
     return lista_planetas
 
 
 def cargar_personaje():
-    lista_personajes=[]
-    personajesAPI= cargar_API("https://www.swapi.tech/api/people?page=1&limit=95")
+    lista_personajes = []
+    personajesAPI = cargar_API("https://www.swapi.tech/api/people?page=1&limit=95")
 
     for results in personajesAPI["results"]:
-        url_personaje=cargar_API(results["url"])
-        nombre_personaje=url_personaje["result"]['properties']["name"]
-        planeta_origen=url_personaje["result"]['properties']["homeworld"]
-        genero=url_personaje["result"]['properties']["gender"]
+        url_personaje = cargar_API(results["url"])
+        url = url_personaje["result"]['properties']["url"]
+        nombre_personaje = url_personaje["result"]['properties']["name"]
+        planeta_origen = url_personaje["result"]['properties']["homeworld"]
+        genero = url_personaje["result"]['properties']["gender"]
 
-        personaje=Personaje(nombre_personaje, planeta_origen,genero)
+        personaje=Personaje(nombre_personaje, planeta_origen,genero, url)
         lista_personajes.append(personaje)
     return lista_personajes
 
@@ -67,15 +69,19 @@ def cargar_especie():
 
     for results in especiesAPI["results"]:
         url_especie=cargar_API(results["url"])
+        url = url_especie["result"]['properties']["url"]
         nombre_especie=url_especie["result"]['properties']["name"]
         altura_especie=url_especie["result"]['properties']["average_height"]
         clasificacion_especie=url_especie["result"]['properties']["classification"]
-        nombre_planeta_origen_especie=url_especie["result"]['properties']["homeworld"]
+        url_planeta = url_especie["result"]['properties']["homeworld"]
+        datos_planeta = cargar_API(url_planeta)
+        nombre_planeta_origen_especie = datos_planeta["result"]['properties']["name"]
         lengua_materna_especie=url_especie["result"]['properties']["language"]
-
-        especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie)
+        personajes = url_especie["result"]['properties']["people"]
+        especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie,personajes, url)
         lista_especies.append(especies)
     return lista_especies
+
 
 def cargar_nave():
     lista_naves=[]
