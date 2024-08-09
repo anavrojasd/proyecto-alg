@@ -1,12 +1,11 @@
 class Pelicula:
-    def __init__(self, titulo, numero_del_episodio, fecha_de_lanzamiento, opening_crawl, director, productores, url, planetas, aeronaves, vehiculos, especies, personajes):
+    def __init__(self, titulo, numero_del_episodio, fecha_de_lanzamiento, opening_crawl, director, productores, planetas, aeronaves, vehiculos, especies, personajes):
         self.titulo = titulo
         self.numero_del_episodio = numero_del_episodio
         self.fecha_de_lanzamiento = fecha_de_lanzamiento
         self.opening_crawl = opening_crawl
         self.director = director
         self.productores = productores
-        self.url = url
         self.planetas = planetas
         self.aeronaves = aeronaves
         self.vehiculos = vehiculos
@@ -22,11 +21,7 @@ class Pelicula:
                 Opening crawl: {self.opening_crawl}
                 Nombre del Director: {self.director}
                         ''')
-<<<<<<< Updated upstream
-        
-=======
         if mostrar_personajes:
             print("Personajes:")
             for personaje in self.personajes:
                 print(f"- {personaje[1]}")
->>>>>>> Stashed changes
