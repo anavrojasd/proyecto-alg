@@ -1,6 +1,7 @@
 class Nave:
-    def __init__(self, piloto):
+    def __init__(self,nave, piloto):
         self.piloto=piloto
+        self.nave=nave
         
 
         # def mostrar_personajes(self):
