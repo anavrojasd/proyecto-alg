@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib as mat
+import numpy as num
 
 def csv_battles():
     # Specify the path to your Excel file
@@ -17,8 +19,14 @@ def csv_characters():
     # Read the Excel file
     df = pd.read_csv(file_path)
 
-    # Display the first few rows of the DataFrame
-    print(df.head())
+    # Group by 'homeworld' and count the number of characters in each group
+    cant_planetas= df.groupby('homeworld').size()
+
+    # Convert the result to a dictionary
+    diccionario_planeta = cant_planetas.to_dict()
+
+    # Display the dictionary
+    print(diccionario_planeta)
 
 
 def csv_cities():
@@ -30,8 +38,6 @@ def csv_cities():
 
     # Display the first few rows of the DataFrame
     print(df.head())
-
-csv_cities()
 
 def csv_droids():
     # Specify the path to your Excel file
@@ -120,8 +126,15 @@ def csv_starships():
     # Read the Excel file
     df = pd.read_csv(file_path)
 
-    # Display the first few rows of the DataFrame
-    print(df.head())
+    longitud_nave= dict(zip(df['name'], df['length']))
+    capacidad_nave= dict(zip(df['name'], df['cargo_capacity']))
+    hiperimpulso_nave= dict(zip(df['name'], df['hyperdrive_rating']))
+    mglt_nave= dict(zip(df['name'], df['MGLT']))
+    
+    for naves in longitud_nave:
+        
+
+
 
 def csv_timeline():
     # Specify the path to your Excel file
@@ -152,4 +165,5 @@ def csv_weapons():
 
     # Display the first few rows of the DataFrame
     print(df.head())
+
 
