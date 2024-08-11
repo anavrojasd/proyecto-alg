@@ -1,14 +1,19 @@
-from API import cargar_peliculas, cargar_planetas, cargar_especie, cargar_personaje
+import requests as rq
+from API import cargar_peliculas, cargar_planetas, cargar_especie, cargar_personaje, cargar_nave, cargar_vehiculo
 from Pelicula import Pelicula
 from Planeta import Planeta
-from Personaje import buscar_personaje, mostrar_personaje
+from Personaje import buscar_personaje, Personaje
+from Nave import Nave
+from Vehiculo import Vehiculo
 
 class App:
     def start(self):
-        peliculas = cargar_peliculas()
-        planetas = cargar_planetas()
+        # planetas = cargar_planetas()
         especies= cargar_especie()
-        personajes = cargar_personaje()
+        # personajes = cargar_personaje()
+        lista_naves = cargar_nave()
+        lista_vehiculos = cargar_vehiculo()
+        lista_peliculas = cargar_peliculas()
 
         print('Bienvenido')
 
@@ -30,30 +35,61 @@ Ingrese una opción del menú:
     13- Salir                                                                                                                              
 --> ''')
             if menu == '1':
-                for pelicula in peliculas:
-                    pelicula.mostrar_peliculas()
+                # peliculas = cargar_peliculas()
+                # for pelicula in peliculas:
+                #     pelicula.mostrar_peliculas()
+                None
 
             elif menu == '2':
-                for especie in especies:
-                    especie.mostrar_especies(peliculas, personajes)
-                
+                # for especie in especies:
+                #     especie.mostrar_especies(peliculas, personajes)
+                None
+
             elif menu == '3':
-                for planeta in planetas:
-                    planeta.mostrar_planetas(peliculas, personajes)
+                # for planeta in planetas:
+                #     planeta.mostrar_planetas(peliculas, personajes)
+                None
 
-            elif menu == '4': 
-                cadena_busqueda = input("Ingrese parte del nombre del personaje a buscar: ")
-                resultados = buscar_personaje(personajes, cadena_busqueda)
-                if resultados:
-                    print("Personajes encontrados:")
+            elif menu == '4':
+                lista_personajes=cargar_personaje()
+                
+                resultados = buscar_personaje(lista_personajes)
+                especie_del_personaje = ""
+                if len(resultados) > 0:
+                    for personaje in resultados:
+                        listaNaves=[]
+                        listaVehiculos=[]
+                        listaPeliculas=[]
+                        eleccion=int(input('Seleccione un personaje: '))
+                        print()
+                        if 1 <= eleccion <= len(resultados):
+                            personaje=resultados[eleccion-1]
+                            
+                            for especie in especies:                                
+                                for p in especie.personajes:
+                                    if p == personaje.url:
+                                        especie_del_personaje = especie.nombre_especie
+                            personaje.show(especie_del_personaje, listaPeliculas, listaNaves, listaVehiculos)
+
+                            for pelicula in lista_peliculas:
+                                for urlPersonaje in pelicula.personajes:
+                                    if personaje.url == urlPersonaje:
+                                        listaPeliculas.append(pelicula.titulo)
+
+                            for nave in lista_naves:
+                                for urlPersonaje in nave.piloto:                                    
+                                    if personaje.url == urlPersonaje:
+                                        listaNaves.append(nave.nombre_nave)
+
+                            for vehiculo in lista_vehiculos:
+                                for urlPersonaje in vehiculo.piloto:
+                                    if personaje.url == urlPersonaje:
+                                        listaVehiculos.append(vehiculo.nombre_vehiculo)
+                        else:
+                            print('Seleccion invalida. Elija un numero en la lista')                            
                 else:
-                    print("No se encontraron personajes con ese nombre.")
-                print()
-                print('Seleccione un personaje: ')    
-                eleccion=int(input('-->'))
-                personaje=self.personajes[eleccion-1]   
-                personaje.mostrar_personaje()
-
+                    print('No se encontraron personajes.')                       
+                
             elif menu == '5':
                 None
 
@@ -84,5 +120,7 @@ Ingrese una opción del menú:
 
 
 
+
 app = App()
 app.start()
+

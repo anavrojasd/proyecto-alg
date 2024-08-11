@@ -26,6 +26,7 @@ def cargar_peliculas():
         aeronaves= results['properties']['starships']
         vehiculos= results['properties']['vehicles']
         especies= results['properties']['species']
+
         pelicula = Pelicula(titulo, personajes,numero_del_episodio,fecha_de_lanzamiento, opening_crawl, director, productores, planetas, aeronaves, vehiculos, especies)
         lista_peliculas.append(pelicula)
     return lista_peliculas
@@ -53,30 +54,24 @@ def cargar_planetas():
 
 def cargar_personaje():
     lista_personajes = []
-    personajesAPI = cargar_API("https://www.swapi.tech/api/people?page=1&limit=95")
+    personajesAPI = cargar_API("https://www.swapi.tech/api/people?page=1&limit=82")
 
     for results in personajesAPI["results"]:
         url_personaje = cargar_API(results["url"])
         url = url_personaje["result"]['properties']["url"]
         nombre_personaje = url_personaje["result"]['properties']["name"]
-
         url_planeta = url_personaje["result"]['properties']["homeworld"]
         datos_planeta = cargar_API(url_planeta)
         planeta_origen = datos_planeta["result"]['properties']["name"]
-
         genero = url_personaje["result"]['properties']["gender"]
 
-        url_especie = url_personaje["result"]['properties']["species"]
-        datos_especie = cargar_API(url_especie) 
-        especie_personaje = datos_especie["result"]['properties']["name"]      
-
-        personaje=Personaje(nombre_personaje, planeta_origen, genero, especie_personaje, url)
+        personaje=Personaje(nombre_personaje, planeta_origen, genero, url)
         lista_personajes.append(personaje)
     return lista_personajes
 
 def cargar_especie():
     lista_especies=[]
-    especiesAPI= cargar_API("https://www.swapi.tech/api/species?page=1&limit=40")
+    especiesAPI= cargar_API("https://www.swapi.tech/api/species?page=1&limit=37")
 
     for results in especiesAPI["results"]:
         url_especie=cargar_API(results["url"])
@@ -89,6 +84,7 @@ def cargar_especie():
         nombre_planeta_origen_especie = datos_planeta["result"]['properties']["name"]
         lengua_materna_especie=url_especie["result"]['properties']["language"]
         personajes = url_especie["result"]['properties']["people"]
+        
         especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie,personajes, url)
         lista_especies.append(especies)
     return lista_especies
@@ -101,8 +97,9 @@ def cargar_nave():
         url_nave=cargar_API(results["url"])
         nombre_nave=url_nave["result"]['properties']["name"]
         piloto_nave=url_nave["result"]['properties']["pilots"]
+        url = url_nave["result"]['properties']["url"]
 
-        nave=Nave(nombre_nave,piloto_nave)
+        nave=Nave(nombre_nave,piloto_nave, url)
         lista_naves.append(nave)
     return lista_naves
 
@@ -118,10 +115,10 @@ def cargar_vehiculo():
         url_vehiculo=cargar_API(results["url"])
         nombre_vehiculo=url_vehiculo["result"]['properties']["name"]
         piloto=url_vehiculo["result"]['properties']["pilots"]
+        url = url_vehiculo["result"]['properties']["url"]
 
-        vehiculo=Vehiculo(nombre_vehiculo, piloto)
+        vehiculo=Vehiculo(nombre_vehiculo, piloto, url)
         lista_vehiculos.append(vehiculo)
     return lista_vehiculos
 
-cargar_vehiculo()
-        
+

@@ -9,8 +9,10 @@ class Especie:
         self.url = url
 
     def mostrar_especies(self, lista_peliculas, lista_personajes):
+
         listaNombres = []
         listaPeliculas = []
+        
         for urlPersonaje in self.personajes:    
             for personaje in lista_personajes:
                 if urlPersonaje == personaje.url:
