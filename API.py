@@ -84,7 +84,7 @@ def cargar_especie():
         nombre_planeta_origen_especie = datos_planeta["result"]['properties']["name"]
         lengua_materna_especie=url_especie["result"]['properties']["language"]
         personajes = url_especie["result"]['properties']["people"]
-        
+
         especies=Especie(nombre_especie,altura_especie,clasificacion_especie,nombre_planeta_origen_especie,lengua_materna_especie,personajes, url)
         lista_especies.append(especies)
     return lista_especies

@@ -17,9 +17,11 @@ def csv_characters():
     # Read the Excel file
     df = pd.read_csv(file_path)
 
-    # Display the first few rows of the DataFrame
-    print(df.head())
+    return df
 
+def nombres_personajes(df):
+    nombres = df['name'].tolist()
+    return nombres
 
 def csv_cities():
     # Specify the path to your Excel file
@@ -31,7 +33,6 @@ def csv_cities():
     # Display the first few rows of the DataFrame
     print(df.head())
 
-csv_cities()
 
 def csv_droids():
     # Specify the path to your Excel file
@@ -84,14 +85,17 @@ def csv_organizations():
     print(df.head())
 
 def csv_planets():
+
     # Specify the path to your Excel file
     file_path = './csv/planets.csv'
 
     # Read the Excel file
     df = pd.read_csv(file_path)
+    return df
 
-    # Display the first few rows of the DataFrame
-    print(df.head())
+def nombres_planetas(df):
+    nombres = df['name'].tolist()
+    return nombres
 
 def csv_quotes():
     # Specify the path to your Excel file
@@ -121,7 +125,12 @@ def csv_starships():
     df = pd.read_csv(file_path)
 
     # Display the first few rows of the DataFrame
-    print(df.head())
+    
+    return df
+
+def nombres_naves(df):
+    nombres = df['name'].tolist()
+    return nombres
 
 def csv_timeline():
     # Specify the path to your Excel file
@@ -151,5 +160,12 @@ def csv_weapons():
     df = pd.read_csv(file_path)
 
     # Display the first few rows of the DataFrame
-    print(df.head())
+    
+    return df
+
+def nombres_armas(df):
+    nombres = df['name'].tolist()
+    return nombres
+
+
 

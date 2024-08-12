@@ -18,18 +18,6 @@ class Personaje:
         print('Vehiculos que utiliza: ')
         print(*listaVehiculos, sep = ",")
 
-    # def mostrar_personaje(self, lista_naves, lista_vehiculos):
-    #     listaNaves=[]
-    #     listaVehiculos=[]
-
-    #     for urlNaves in self.nave:    
-    #         for nave in lista_naves:
-    #             if urlNaves == nave.url:
-    #                 listaNaves.append(nave.nombre_nave)
-    #     for vehiculo in lista_vehiculos:
-    #         for urlPersonaje in vehiculo.personajes:
-    #             if urlPersonaje == self.url:
-    #                 listaVehiculos.append(vehiculo.nombre_vehiculo) 
     
                                
 

@@ -3,6 +3,9 @@ class Usuario:
         self.cedula=cedula
         self.nombre=nombre
         self.apellido=apellido
+
+
+    
         
 
         
