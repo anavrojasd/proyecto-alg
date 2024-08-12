@@ -5,12 +5,14 @@ from Planeta import Planeta
 from Personaje import buscar_personaje, Personaje
 from Nave import Nave
 from Vehiculo import Vehiculo
+from estadistica import csv_characters, nombre_planeta, csv_starships, longitud_de_nave, capacidad_de_nave, hiperimpulso_de_nave, mglt_de_nave, estadisticas_aeronaves
+
 
 class App:
     def start(self):
-        # planetas = cargar_planetas()
+        planetas = cargar_planetas()
         especies= cargar_especie()
-        # personajes = cargar_personaje()
+        personajes = cargar_personaje()
         lista_naves = cargar_nave()
         lista_vehiculos = cargar_vehiculo()
         lista_peliculas = cargar_peliculas()
@@ -35,19 +37,19 @@ Ingrese una opción del menú:
     13- Salir                                                                                                                              
 --> ''')
             if menu == '1':
-                # peliculas = cargar_peliculas()
-                # for pelicula in peliculas:
-                #     pelicula.mostrar_peliculas()
+                peliculas = cargar_peliculas()
+                for pelicula in peliculas:
+                    pelicula.mostrar_peliculas()
                 None
 
             elif menu == '2':
-                # for especie in especies:
-                #     especie.mostrar_especies(peliculas, personajes)
+                for especie in especies:
+                    especie.mostrar_especies(peliculas, personajes)
                 None
 
             elif menu == '3':
-                # for planeta in planetas:
-                #     planeta.mostrar_planetas(peliculas, personajes)
+                for planeta in planetas:
+                    planeta.mostrar_planetas(peliculas, personajes)
                 None
 
             elif menu == '4':
@@ -91,13 +93,40 @@ Ingrese una opción del menú:
                     print('No se encontraron personajes.')                       
                 
             elif menu == '5':
-                None
+                personajes = csv_characters()
+                nombre_planeta(personajes)
 
             elif menu == '6':
-                None
+                while True:
+                    submenu=input('''
+Ingrese una de las opciones:
+        1- Longitud de la nave.
+        2- Capacidad de carga.
+        3- Clasificación de hiperimpulsor.
+        4- MGLT (Modern Galactic Light Time)
+        5- Salir.
+ ''')
+                    if submenu=='1':
+                        graficos_longitudes= csv_starships()
+                        longitud_de_nave(graficos_longitudes)
 
+                    elif submenu=='2':
+                        graficos_capacidad= csv_starships()
+                        capacidad_de_nave(graficos_capacidad)
+                    
+                    elif submenu== '3':
+                        graficos_hiperimpulso= csv_starships()
+                        hiperimpulso_de_nave(graficos_hiperimpulso)
+                    
+                    elif submenu== '4':
+                        graficos_mglt= csv_starships()
+                        mglt_de_nave(graficos_mglt)
+                    
+                    elif submenu=='5':
+                        break
+                    
             elif menu == '7':
-                None        
+                estadisticas_aeronaves()   
 
             elif menu == '8':
                 None

@@ -1,4 +1,4 @@
-from Estadistica import csv_planets, csv_starships, csv_weapons, csv_characters
+from estadistica import csv_planets, csv_starships, csv_weapons, csv_characters
 from Usuario import Usuario
 class Mision:
 
