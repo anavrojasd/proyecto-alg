@@ -1,3 +1,5 @@
+from App import App
 def main():
-    print('hola')
+    app=App()
+    app.start()
 main()
